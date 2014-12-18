@@ -1,6 +1,7 @@
 # system.prop for m8
 
 ro.product.model=One M8
+ro.product.device= M8
 
 # RIL
 rild.libargs=-d /dev/smd0
