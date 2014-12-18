@@ -29,6 +29,7 @@
 # 0P6B70000 - Sprint
 
 TARGET_OTA_ASSERT_DEVICE := htc_m8,htc_m8whl,htc_m8wl,m8,m8wl,m8wlv,m8vzw,m8whl,m8spr
+TARGET_BOARD_INFO_FILE ?= device/htc/m8/board-info.txt
 
 BOARD_VENDOR := htc
 
@@ -71,6 +72,8 @@ TARGET_USES_QCOM_BSP := true
 AUDIO_FEATURE_DISABLED_MULTI_VOICE_SESSIONS := true
 BOARD_AUDIO_AMPLIFIER := device/htc/m8/libaudioamp
 BOARD_USES_ALSA_AUDIO := true
+AUDIO_FEATURE_LOW_LATENCY_PRIMARY := true
+AUDIO_FEATURE_ENABLED_LOW_LATENCY_CAPTURE := true
 
 # Bluetooth
 BOARD_HAVE_BLUETOOTH := true
@@ -177,6 +180,8 @@ BOARD_SEPOLICY_UNION += \
     mm-qcamerad.te \
     mpdecision.te \
     platform_app.te \
+    property_contexts \
+    recovery.te \
     rmt_storage.te \
     system_app.te \
     system_server.te \
