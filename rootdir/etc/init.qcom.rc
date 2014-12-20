@@ -238,20 +238,6 @@ on boot
     chown system system /sys/class/leds/flashlight/brightness
     chmod 0666 /sys/class/leds/flashlight/brightness
 
-# Define TCP buffer sizes for various networks
-#   ReadMin, ReadInitial, ReadMax, WriteMin, WriteInitial, WriteMax,
-    setprop net.tcp.buffersize.default 4096,87380,110208,4096,16384,110208
-    setprop net.tcp.buffersize.wifi    524288,1048576,2097152,262144,524288,1048576
-    setprop net.tcp.buffersize.lte     524288,1048576,5120000,262144,524288,1220608
-    setprop net.tcp.buffersize.hspap   4096,174760,1572864,4096,16384,1220608
-    setprop net.tcp.buffersize.hspa    4096,174760,1572864,4096,16384,1220608
-    setprop net.tcp.buffersize.hsupa   4096,174760,1572864,4096,16384,1220608
-    setprop net.tcp.buffersize.hsdpa   4096,174760,1572864,4096,16384,1220608
-    setprop net.tcp.buffersize.umts    4096,174760,1572864,4096,16384,110208
-    setprop net.tcp.buffersize.edge    4093,26280,35040,4096,16384,35040
-    setprop net.tcp.buffersize.gprs    4092,8760,11680,4096,8760,11680
-    setprop net.tcp.buffersize.evdo_b  4094,87380,262144,4096,16384,262144
-
 # Assign TCP buffer thresholds to be ceiling value of technology maximums
 # Increased technology maximums should be reflected here.
     write /proc/sys/net/core/rmem_max  1220608
@@ -328,6 +314,7 @@ service cir_fw_update /system/bin/cir_fw_update -u cir.img
     user root
     group root
     oneshot
+    seclabel u:r:cir_fw_update:s0
 
 service dhcpcd_bnep0 /system/bin/dhcpcd -BKLG
     disabled
@@ -401,6 +388,7 @@ service hcheck /system/bin/hcheck
     user system
     group system
     oneshot
+    seclabel u:r:hcheck:s0
 
 service hciattach /system/bin/sh /system/etc/init.qcom.bt.bluedroid.sh
     class late_start
@@ -467,6 +455,7 @@ service mpdecision /system/bin/mpdecision --avg_comp
 
 service netmgrd /system/bin/netmgrd
     class core
+    seclabel u:r:netmgrd:s0
 
 service p2p_supplicant /system/bin/wpa_supplicant \
     -iwlan0 -Dnl80211 -c/data/misc/wifi/wpa_supplicant.conf \
@@ -495,6 +484,7 @@ service qmuxd /system/bin/qmuxd
     class core
     user radio
     group radio audio bluetooth gps qcom_diag
+    seclabel u:r:qmuxd:s0
 
 service qseecomd /system/bin/qseecomd
    class main
