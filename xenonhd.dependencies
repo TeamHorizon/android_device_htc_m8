@@ -6,7 +6,7 @@
     "revision": "cm-12.0"
   },
   {
-	"remote": "th",
+    "remote": "th",
     "repository": "android_hardware_qcom_fm",
     "target_path": "hardware/qcom/fm",
     "revision": "lollipop"
