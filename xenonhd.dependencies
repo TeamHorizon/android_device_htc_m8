@@ -10,5 +10,10 @@
     "repository": "android_hardware_qcom_fm",
     "target_path": "hardware/qcom/fm",
     "revision": "lollipop"
+  },
+  { "remote": "th",
+    "repository": "proprietary_vendor_htc",
+    "target_path": "vendor/htc",
+    "revision": "lollipop"
   }
 ]
