@@ -170,6 +170,7 @@ BOARD_SEPOLICY_UNION += \
     file.te \
     hcheck.te \
     init.te \
+    kcal_dev.te \
     kernel.te \
     mediaserver.te \
     mm-qcamerad.te \

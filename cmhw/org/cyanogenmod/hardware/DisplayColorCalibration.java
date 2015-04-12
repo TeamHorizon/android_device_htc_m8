@@ -21,7 +21,9 @@ import java.util.Scanner;
 import org.cyanogenmod.hardware.util.FileUtils;
 
 public class DisplayColorCalibration {
-    private static final String COLOR_FILE = "/sys/class/graphics/fb0/rgb";
+    private static final String COLOR_FILE = "/sys/devices/platform/kcal_ctrl.0/kcal";
+    private static final String COLOR_FILE_CTRL = "/sys/devices/platform/kcal_ctrl.0/kcal_ctrl";
+    private static final String COLOR_MIN = "/sys/devices/platform/kcal_ctrl.0/kcal_min";
 
     public static boolean isSupported() {
         File f = new File(COLOR_FILE);
@@ -29,11 +31,18 @@ public class DisplayColorCalibration {
     }
 
     public static int getMaxValue()  {
-        return 32768;
+        return 255;
     }
 
     public static int getMinValue()  {
-        return 255;
+        int ret = 35;  // 35 is a good default minimum
+        try {
+            Scanner s = new Scanner(new File(COLOR_MIN));
+            ret = s.nextInt();
+            s.close();
+        } catch (Exception ex) {}
+
+        return ret;
     }
 
     public static int getDefValue() {
@@ -45,6 +54,9 @@ public class DisplayColorCalibration {
     }
 
     public static boolean setColors(String colors) {
-        return FileUtils.writeLine(COLOR_FILE, colors);
+        if (!FileUtils.writeLine(COLOR_FILE, colors)) {
+            return false;
+        }
+        return FileUtils.writeLine(COLOR_FILE_CTRL, "1");
     }
 }
