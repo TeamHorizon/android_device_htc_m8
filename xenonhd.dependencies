@@ -14,6 +14,6 @@
   { "remote": "th",
     "repository": "proprietary_vendor_htc",
     "target_path": "vendor/htc",
-    "revision": "lollipop"
+    "revision": "lp-mr1"
   }
 ]
