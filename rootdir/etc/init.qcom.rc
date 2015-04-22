@@ -106,6 +106,8 @@ on fs
     setprop ro.crypto.fuse_sdcard true
 
 on post-fs-data
+    symlink /sys/kernel/debug /data/d
+
     mkdir /data/tombstones 0771 system system
     symlink /data/tombstones /tombstones
     mkdir /tombstones/modem 0771 system system
@@ -119,14 +121,6 @@ on post-fs-data
     restorecon /data/OTPData.dat
 
     mkdir /data/misc/bluetooth 0770 bluetooth bluetooth
-
-    # Create the directories used by the Wireless subsystem
-    mkdir /data/misc/wifi 0771 wifi wifi
-    mkdir /data/misc/wifi/hostapd 0770 wifi wifi
-    mkdir /data/misc/wifi/sockets 0770 wifi wifi
-    mkdir /data/misc/wifi/wpa_supplicant 0770 wifi wifi
-    mkdir /data/misc/dhcp 0770 dhcp dhcp
-    chown dhcp dhcp /data/misc/dhcp
 
     # Create the directory used by CnE subsystem
     mkdir /data/connectivity 0771 system system
@@ -169,9 +163,6 @@ on post-fs-data
 
     #Create directory for FOTA
     mkdir /data/fota 0771 system system
-
-    #Create directory for hostapd
-    mkdir /data/hostapd 0770 system wifi
 
     # Create /data/time folder for time-services
     mkdir /data/time/ 0700 system system
@@ -397,13 +388,6 @@ service hciattach /system/bin/sh /system/etc/init.qcom.bt.bluedroid.sh
     group bluetooth net_bt_admin
     disabled
     oneshot
-
-service hostapd /system/bin/hostapd -dddd /data/hostapd/hostapd.conf
-    class late_start
-    user root
-    group root
-    oneshot
-    disabled
 
 service hvdcp /system/bin/hvdcp
     class core
@@ -635,7 +619,6 @@ on property:init.svc.bootanim=stopped
 # CM Performance Profiles
 on property:sys.perf.profile=0
     stop mpdecision
-    stop thermal-engine
     write /sys/devices/system/cpu/cpu1/online 1
     write /sys/devices/system/cpu/cpu2/online 1
     write /sys/devices/system/cpu/cpu3/online 1
@@ -646,11 +629,9 @@ on property:sys.perf.profile=0
     write /sys/devices/system/cpu/cpu3/cpufreq/scaling_governor conservative
     write /sys/class/kgsl/kgsl-3d0/devfreq/governor msm-adreno-tz
     start mpdecision
-    start thermal-engine
 
 on property:sys.perf.profile=1
     stop mpdecision
-    stop thermal-engine
     write /sys/devices/system/cpu/cpu1/online 1
     write /sys/devices/system/cpu/cpu2/online 1
     write /sys/devices/system/cpu/cpu3/online 1
@@ -675,11 +656,9 @@ on property:sys.perf.profile=1
 
     write /sys/class/kgsl/kgsl-3d0/devfreq/governor msm-adreno-tz
     start mpdecision
-    start thermal-engine
 
 on property:sys.perf.profile=2
     stop mpdecision
-    stop thermal-engine
     write /sys/devices/system/cpu/cpu1/online 1
     write /sys/devices/system/cpu/cpu2/online 1
     write /sys/devices/system/cpu/cpu3/online 1
@@ -689,4 +668,3 @@ on property:sys.perf.profile=2
     write /sys/devices/system/cpu/cpu2/cpufreq/scaling_governor performance
     write /sys/devices/system/cpu/cpu3/cpufreq/scaling_governor performance
     write /sys/class/kgsl/kgsl-3d0/devfreq/governor performance
-    start thermal-engine
