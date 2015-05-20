@@ -20,6 +20,7 @@
 
 package org.cyanogenmod.dotcase;
 
+import android.graphics.Color;
 import android.graphics.Paint;
 
 import java.util.HashMap;
@@ -48,94 +49,50 @@ public class DotcaseConstants {
         FB_MESSENGER,
         KIK,
         GROUPME,
-        GPLUS
+        GPLUS,
+        INBOX,
+        LMMS,
+        INSTAGRAM,
+        WHATSAPP,
+        TAPATALK
     }
 
     /**
-     * Paints
+     * Colors
      */
+    static final int[] paintColors = {
+        Color.TRANSPARENT,
+        Color.BLACK,
+        Color.WHITE,
+        Color.RED,
+        Color.GREEN,
+        Color.BLUE,
+        0xffffa500, // Orange
+        0xffa020f0, // Purple
+        Color.YELLOW,
+        Color.DKGRAY,
+        0xff33b5e5, // Cyan
+        0xff008000, // Dark Green
+        0xff800000, // Dark Red
+        0xffffff99, // Alarm Yellow
+        0xff55acee, // Twitter Blue
+        0xff3b5998, // Facebook Blue
+        0xffff64c8, // Couples Pink
+        0xff00aff0, // GroupMe Blue
+        0xff325ccc, // Inbox Blue
+        0xff22b7fb, // Inbox Teal
+        0xff80d3fd, // Inbox Sea Foam
+        0xff11a9f9, // LMMS Green
+        0xffe4e2e6, // LMMS Grey
+        0xffebe3d8, // Instagram Cream
+        0xff935b48, // Instagram Brown
+        0xff35b024, // Whatsapp Green
+        0xfff86901, // Tapatalk Orange
+    };
 
-    static final Paint pTrans = new Paint();
-    static final Paint pBlack = new Paint();
-    static final Paint pWhite = new Paint();
-    static final Paint pRed = new Paint();
-    static final Paint pGreen = new Paint();
-    static final Paint pBlue = new Paint();
-    static final Paint pOrange = new Paint();
-    static final Paint pPurple = new Paint();
-    static final Paint pYellow = new Paint();
-    static final Paint pGrey = new Paint();
-    static final Paint pCyan = new Paint();
-    static final Paint pDGreen = new Paint();
-    static final Paint pDRed = new Paint();
-    static final Paint pFYellow = new Paint();
-    static final Paint pTBlue = new Paint();
-    static final Paint pFbBlue = new Paint();
-    static final Paint pPink = new Paint();
-    static final Paint pGmBlue = new Paint();
-
-    static {
-        pTrans.setARGB(0, 0, 0, 0);
-        pBlack.setARGB(255, 0, 0, 0);
-        pWhite.setARGB(255, 255, 255, 255);
-        pRed.setARGB(255, 255, 0, 0);
-        pGreen.setARGB(255, 0, 255, 0);
-        pBlue.setARGB(255, 0, 0, 255);
-        pOrange.setARGB(255, 255, 165, 0);
-        pPurple.setARGB(255, 160, 32, 240);
-        pYellow.setARGB(255, 255, 255, 0);
-        pGrey.setARGB(255, 69, 69, 69);
-        pCyan.setARGB(255, 51, 181, 229);
-        pDGreen.setARGB(255, 0, 128, 0);
-        pDRed.setARGB(255, 128, 0, 0);
-        pFYellow.setARGB(255, 255, 255, 153);
-        pTBlue.setARGB(255, 85, 172, 238);
-        pFbBlue.setARGB(255, 59, 89, 152);
-        pPink.setARGB(255, 255, 100, 200);
-        pGmBlue.setARGB(255, 0, 175, 240);
-    }
-
-    static Paint getPaintFromNumber(int color) {
-        switch (color) {
-            case -1:
-                return pTrans;
-            case 0:
-                return pBlack;
-            case 1:
-                return pWhite;
-            case 2:
-                return pRed;
-            case 3:
-                return pGreen;
-            case 4:
-                return pBlue;
-            case 5:
-                return pOrange;
-            case 6:
-                return pPurple;
-            case 7:
-                return pYellow;
-            case 8:
-                return pGrey;
-            case 9:
-                return pCyan;
-            case 10:
-                return pDGreen;
-            case 11:
-                return pDRed;
-            case 12:
-                return pFYellow;
-            case 13:
-                return pTBlue;
-            case 14:
-                return pFbBlue;
-            case 15:
-                return pPink;
-            case 16:
-                return pGmBlue;
-            default:
-                return pBlack;
-        }
+    static Paint getPaintFromNumber(Paint paint, final int color) {
+        paint.setColor(paintColors[color + 1]);
+        return paint;
     }
 
     /**
@@ -169,13 +126,13 @@ public class DotcaseConstants {
         notificationMap.put("com.android.phone", Notification.MISSED_CALL);
 
         // MMS apps
-        notificationMap.put("com.android.mms", Notification.MMS);
+        notificationMap.put("com.google.android.apps.messaging", Notification.MMS);
         notificationMap.put("com.p1.chompsms", Notification.MMS);
         notificationMap.put("com.handcent.nextsms", Notification.MMS);
         notificationMap.put("com.klinker.android.evolve_sms", Notification.MMS);
 
         // Voicemail apps
-        notificationMap.put("com.google.android.apps.googlevoice", Notification.VOICEMAIL);
+        notificationMap.put("com.google.android.apps.googlevoice",Notification.VOICEMAIL);
 
         // Couples apps
         notificationMap.put("com.tenthbit.juliet", Notification.COUPLES); // Couple
@@ -183,6 +140,7 @@ public class DotcaseConstants {
         notificationMap.put("kr.co.vcnc.android.couple", Notification.COUPLES); // Between
 
         // Other apps
+        notificationMap.put("com.android.mms", Notification.LMMS);
         notificationMap.put("com.google.android.apps.plus", Notification.GPLUS);
         notificationMap.put("com.google.android.gm", Notification.GMAIL);
         notificationMap.put("com.google.android.talk", Notification.HANGOUTS);
@@ -191,6 +149,10 @@ public class DotcaseConstants {
         notificationMap.put("com.facebook.orca", Notification.FB_MESSENGER);
         notificationMap.put("kik.android", Notification.KIK);
         notificationMap.put("com.groupme.android", Notification.GROUPME);
+        notificationMap.put("com.instagram.android", Notification.INSTAGRAM);
+        notificationMap.put("com.quoord.tapatalkpro.activity", Notification.TAPATALK);
+        notificationMap.put("com.whatsapp", Notification.WHATSAPP);
+        notificationMap.put("com.google.android.apps.inbox", Notification.INBOX);
     }
 
     /**
@@ -347,6 +309,56 @@ public class DotcaseConstants {
         {16, 16, 16, 16, 16, 16, 16},
         { 0,  0,  0, 16,  0,  0,  0}};
 
+    static final int[][] inboxSprite = {
+        { 0,  0,  0, 17,  0,  0,  1},
+        { 0,  0, 17, 17, 17,  1,  0},
+        { 0, 17,  1, 17,  1, 17,  0},
+        {17, 17, 17,  1, 17, 17, 19},
+        {18, 18, 18, 17, 19, 19, 19},
+        {18, 18, 18, 19, 19, 19, 19},
+        {18, 18, 19, 19, 19, 19, 19},
+        {18, 19, 19, 19, 19, 19, 19}};
+
+    static final int[][] lmmsSprite = {
+        { 0,  0,  0,  0,  0,  0,  0},
+        {20, 20, 20, 20, 20, 21, 21},
+        {20, 20, 20, 20, 20, 21, 21},
+        {20, 20, 20, 20, 20, 21, 21},
+        {20, 20, 20, 20, 20, 21, 21},
+        {20, 20, 20, 20, 20, 21, 21},
+        { 0, 20, 20, 21, 21,  0,  0},
+        { 0, 20,  0, 21,  0,  0,  0}};
+
+    static final int[][] instagramSprite = {
+        { 0, 23, 23, 23, 23, 23,  0},
+        { 0, 23, 23, 23, 23, 23,  0},
+        { 0,  0,  0,  0,  0,  0,  0},
+        { 0, 22, 22, 22, 22, 22,  0},
+        { 0, 22, 22,  0, 22, 22,  0},
+        { 0, 22,  0,  0,  0, 22,  0},
+        { 0, 22, 22,  0, 22, 22,  0},
+        { 0, 22, 22, 22, 22, 22,  0}};
+
+    static final int[][] whatsappSprite = {
+        { 0,  0,  0,  1,  0,  0,  0},
+        { 0,  0,  1, 24,  1,  0,  0},
+        { 0,  1, 24, 24, 24,  1,  0},
+        { 1, 24, 24, 24, 24, 24,  1},
+        { 0,  1, 24, 24, 24,  1,  0},
+        { 0,  0,  1, 24,  1,  0,  0},
+        { 0,  1, 24,  1,  0,  0,  0},
+        { 0,  0,  1,  0,  0,  0,  0}};
+
+    static final int[][] tapatalkSprite = {
+        { 0,  0, 25, 25, 25,  0,  0},
+        { 0, 25, 25,  1, 25, 25,  0},
+        {25, 25,  1,  1, 25, 25, 25},
+        {25, 25,  1,  1,  1, 25, 25},
+        {25, 25, 25,  1, 25, 25, 25},
+        { 0, 25, 25,  1,  1, 25,  0},
+        { 0, 25, 25, 25, 25,  0,  0},
+        {25, 25,  0,  0,  0,  0,  0}};
+
     static int[][] getNotificationSprite(Notification notification) {
         switch (notification) {
             case DOTS:
@@ -379,6 +391,16 @@ public class DotcaseConstants {
                 return groupMeSprite;
             case GPLUS:
                 return gPlusSprite;
+            case INBOX:
+                return inboxSprite;
+            case LMMS:
+                return lmmsSprite;
+            case INSTAGRAM:
+                return instagramSprite;
+            case WHATSAPP:
+                return whatsappSprite;
+            case TAPATALK:
+                return tapatalkSprite;
             default:
                 return null;
         }
