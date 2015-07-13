@@ -13,7 +13,7 @@
   },
   { "remote": "th",
     "repository": "proprietary_vendor_htc_m8",
-    "target_path": "vendor/htc",
+    "target_path": "vendor/htc/m8",
     "revision": "lp-mr1"
   }
 ]
