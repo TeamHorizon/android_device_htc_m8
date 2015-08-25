@@ -12,8 +12,8 @@
     "revision": "cm-12.1"
   },
   { "remote": "th",
-    "repository": "proprietary_vendor_htc_m8",
-    "target_path": "vendor/htc/m8",
+    "repository": "proprietary_vendor_htc",
+    "target_path": "vendor/htc",
     "revision": "lp-mr1"
   }
 ]
