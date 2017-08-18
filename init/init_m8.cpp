@@ -75,11 +75,12 @@ void vendor_load_properties()
         /* m8vzw (m8wl) */
         common_properties();
         cdma_properties("0", "10");
-        property_set("ro.product.model", "m8wl");
-        property_set("ro.build.fingerprint", "htc/HTCOneM8vzw/htc_m8wl:6.0/MRA58K/708002.3:user/release-keys");
-        property_set("ro.build.description", "6.21.605.3 CL708002 release-keys");
-        property_set("ro.product.device", "htc_m8wl");
-        property_set("ro.build.product", "htc_m8wl");
+        property_override("ro.product.model", "m8wl");
+        property_override("ro.build.fingerprint", "htc/HTCOneM8vzw/htc_m8wl:6.0/MRA58K/708002.3:user/release-keys");
+        property_override("ro.build.description", "6.21.605.3 CL708002 release-keys");
+        property_override("ro.product.device", "htc_m8wl");
+        property_override("ro.build.product", "htc_m8wl");
+        property_override("ro.com.google.clientidbase", "android-verizon");
         property_set("ro.ril.vzw.feature", "1");
         property_set("ro.ril.oem.ecclist", "911,*911,#911");
         property_set("ro.ril.enable.a52", "0");
