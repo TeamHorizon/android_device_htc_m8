@@ -1,5 +1,6 @@
 #
 # Copyright (C) 2015 The CyanogenMod Project
+#               2017 The LineageOS Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -41,13 +42,15 @@
 TARGET_OTA_ASSERT_DEVICE := htc_m8,htc_m8whl,htc_m8wl,m8,m8wl,m8wlv,m8vzw,m8whl,m8spr
 
 # Kernel
-TARGET_KERNEL_CONFIG := cm_m8_defconfig
+TARGET_KERNEL_CONFIG := m8_defconfig
 
 # Bluetooth
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/htc/m8/bluetooth
 
 # RIL
 BOARD_RIL_CLASS := ../../../device/htc/m8/ril
+TARGET_NEEDS_GCC_LIBC := true
+TARGET_NEEDS_GCC_LIBRIL := true
 
 # Partitions
 BOARD_SYSTEMIMAGE_PARTITION_SIZE := 1073741824
@@ -56,7 +59,6 @@ BOARD_USERDATAIMAGE_PARTITION_SIZE := 13153337344
 # Vendor Init
 TARGET_INIT_VENDOR_LIB := libinit_m8
 TARGET_RECOVERY_DEVICE_MODULES := libinit_m8
-TARGET_UNIFIED_DEVICE := true
 
 # Inherit from the proprietary version
 -include vendor/htc/m8/BoardConfigVendor.mk
