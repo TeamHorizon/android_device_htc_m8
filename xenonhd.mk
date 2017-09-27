@@ -17,7 +17,7 @@ PRODUCT_PROPERTY_OVERRIDES += ro.xenonhd.maintainer="ljjehl"
 PRODUCT_BRAND := htc
 PRODUCT_DEVICE := m8
 PRODUCT_MANUFACTURER := HTC
-PRODUCT_MODEL := One
+PRODUCT_MODEL := M8
 PRODUCT_NAME := xenonhd_m8
 
 # Inherit from m8-common
